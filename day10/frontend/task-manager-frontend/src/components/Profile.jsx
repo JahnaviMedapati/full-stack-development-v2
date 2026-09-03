@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+const API_URL =
+    import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 function Profile({ user, token, onBack }) {
     const [profileTasks, setProfileTasks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,7 +20,7 @@ function Profile({ user, token, onBack }) {
                 setError("");
 
                 const response = await fetch(
-                    "http://127.0.0.1:8000/profile/tasks",
+                    `${API_URL}/profile/tasks`,
                     {
                         method: "GET",
                         headers: {
@@ -75,7 +78,7 @@ function Profile({ user, token, onBack }) {
             setError("");
 
             const response = await fetch(
-                `http://127.0.0.1:8000/profile/tasks/${id}/permanent`,
+                `${API_URL}/profile/tasks/${id}/permanent`,
                 {
                     method: "DELETE",
                     headers: {
@@ -285,8 +288,8 @@ function Profile({ user, token, onBack }) {
                         <button
                             type="button"
                             className={`profile-filter-button ${activeFilter === "all"
-                                    ? "active"
-                                    : ""
+                                ? "active"
+                                : ""
                                 }`}
                             onClick={() =>
                                 setActiveFilter("all")
@@ -298,8 +301,8 @@ function Profile({ user, token, onBack }) {
                         <button
                             type="button"
                             className={`profile-filter-button ${activeFilter === "active"
-                                    ? "active"
-                                    : ""
+                                ? "active"
+                                : ""
                                 }`}
                             onClick={() =>
                                 setActiveFilter("active")
@@ -311,8 +314,8 @@ function Profile({ user, token, onBack }) {
                         <button
                             type="button"
                             className={`profile-filter-button ${activeFilter === "completed"
-                                    ? "active"
-                                    : ""
+                                ? "active"
+                                : ""
                                 }`}
                             onClick={() =>
                                 setActiveFilter("completed")
@@ -324,8 +327,8 @@ function Profile({ user, token, onBack }) {
                         <button
                             type="button"
                             className={`profile-filter-button ${activeFilter === "important"
-                                    ? "active"
-                                    : ""
+                                ? "active"
+                                : ""
                                 }`}
                             onClick={() =>
                                 setActiveFilter("important")
@@ -395,8 +398,8 @@ function Profile({ user, token, onBack }) {
 
                                         <div
                                             className={`profile-task-status ${task.completed
-                                                    ? "completed"
-                                                    : "active"
+                                                ? "completed"
+                                                : "active"
                                                 }`}
                                         >
                                             {task.completed
